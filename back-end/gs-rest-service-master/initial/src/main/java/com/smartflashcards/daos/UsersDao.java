@@ -1,7 +1,6 @@
 package com.smartflashcards.daos;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -10,21 +9,9 @@ import com.smartflashcards.objects.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UsersDao {
-    private Connection connect = null;
-
+public class UsersDao extends Dao {
     public UsersDao() {
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-
-            // Setup the connection with the DB
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/smart_flash_cards?"
-                    + "user=root&password=learnAndGrow123&serverTimezone=UTC");
-
-        } catch (Exception e) {
-            System.out.println("Issues connecting to smart_flash_cards database.");
-        } 
+        super();
     }
 
     // Retrieve user by userId
@@ -32,47 +19,35 @@ public class UsersDao {
         Statement statement = connect.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from smart_flash_cards.user_info where userId=" + userId.toString());
         User user = transformToUser(resultSet);
-        finishStatementExecution(statement, resultSet);
+        finishStatementExecution(statement, null, resultSet);
         return user;
+    }
+
+    // Create new user
+    public User createUser(String name) throws Exception {
+        PreparedStatement preparedStatement = connect.prepareStatement("insert into smart_flash_cards.user_info (username) values (?)");
+        preparedStatement.setString(1, name);
+        Integer numRows = preparedStatement.executeUpdate();
+        if (numRows == 1) {
+            Statement statement = connect.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM user_info WHERE userId=(SELECT LAST_INSERT_ID())");
+            User user = transformToUser(resultSet);
+            finishStatementExecution(statement, preparedStatement, resultSet);
+            return user;
+        } else {
+            throw new Exception("Unable to create new user.");
+        }
     }
 
     private User transformToUser(ResultSet resultSet) throws Exception {
         if (resultSet.next()){
-            User user;
             Integer userId = resultSet.getInt("userId");
             String username = resultSet.getString("username");
-            if (username != null) {
-                user = new User(userId, username);
-            } else {
-                user = new User(userId);
-            }
+            username = username == null ? "Learner " + userId.toString(): username;
+            User user = new User(userId, username);
             return user;
          } else {
             throw new Exception("No user with that id found.");
          }
-    }
-
-    // You need to close the resultSet
-    private void closeConnection() {
-        try {
-            if (connect != null) {
-                connect.close();
-            }
-        } catch (Exception e) {
-            System.out.println("Unable to close connection.");
-        }
-    }
-
-    private void finishStatementExecution(Statement statement, ResultSet resultSet) {
-        try {
-            if (statement != null) {
-                statement.close();
-            }
-            if (resultSet != null) {
-                resultSet.close();
-            }
-        } catch (Exception e) {
-            System.out.println("Unable to finish statement execution.");
-        }
     }
 }

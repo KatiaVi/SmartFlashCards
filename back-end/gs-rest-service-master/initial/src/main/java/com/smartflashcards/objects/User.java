@@ -9,11 +9,6 @@ public class User {
         this.username = null;
     }
     
-    public User(Integer id) {
-		this.id = id;
-		this.username = "Learner "+ id.toString();
-    }
-    
     public User(Integer id, String username) {
 		this.id = id;
 		this.username = username;
