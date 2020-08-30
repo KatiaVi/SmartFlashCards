@@ -1,6 +1,7 @@
 package com.smartflashcards.controllers;
 
 import com.smartflashcards.daos.CardsDao;
+import com.smartflashcards.helpers.PronunciationClient;
 import com.smartflashcards.objects.Card;
 import com.smartflashcards.objects.CardPayload;
 
@@ -18,6 +19,9 @@ public class CardController {
 
     @Autowired
     private CardsDao cardsDao;
+
+    @Autowired
+    private PronunciationClient pronunciationClient;
         
 	@GetMapping("/v1/Decks/{id}/Cards")
 	public Card[] getAllCards(@PathVariable(name="id") Integer deckId) {
@@ -49,7 +53,7 @@ public class CardController {
         Card card;
         try{
             // Todo: Retrieve the pronunciation using Google APIs
-            String pronunciationUrl = "fake pronunciation retrieved from Google API";
+            String pronunciationUrl = pronunciationClient.createPronunciation(payload.getSource(), payload.getTranslation(), payload.getLanguage());
             card = cardsDao.createCard(deckId, payload, pronunciationUrl);
             return card;
         } catch (Exception e) {
@@ -66,7 +70,7 @@ public class CardController {
             String pronunciationUrl = oldCard.getPronunciationUrl();
             if (oldCard.getTranslation() != payload.getTranslation()){
                 // Todo: Retrieve the pronunciation of new translation using Google APIs
-                pronunciationUrl = "fake pronunciation retrieved from Google API";
+                pronunciationUrl = pronunciationClient.createPronunciation(payload.getSource(), payload.getTranslation(), payload.getLanguage());
             }
             card = cardsDao.updateCard(deckId, cardId, payload, pronunciationUrl);
             return card;

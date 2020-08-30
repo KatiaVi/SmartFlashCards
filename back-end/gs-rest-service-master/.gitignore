@@ -29,3 +29,4 @@ initial/build.gradle
 initial/gradle*
 initial/settings.gradle
 initial/mvn*
+initial/*.mp3
