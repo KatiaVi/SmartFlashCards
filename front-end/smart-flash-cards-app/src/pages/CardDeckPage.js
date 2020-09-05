@@ -25,7 +25,7 @@ const useAudio = url => {
   };
 
 const CardDeckPage = props => {
-    const [playing, toggle] = useAudio("https://pronunciations-smart-flash-cards.s3.us-east-2.amazonaws.com/sample-audio1.mp3");
+    const [playing, toggle] = useAudio("./cat-ko-KR.mp3");
     return (
         <Container className="content">
             <Row>
