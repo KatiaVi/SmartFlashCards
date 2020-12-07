@@ -1,20 +1,32 @@
 import React from 'react';
-import HomePage from './pages/HomePage';
+import Main from './Main';
 import CardDeckPage from './pages/CardDeckPage';
 import LearningSpacePage from './pages/LearningSpacePage';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter, BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { postDeck, postUser } from './redux/ActionCreators';
+import { ConfigureStore } from './redux/configureStore';
+import { Provider } from 'react-redux';
 
-export const Routes = () => {
-  return (
-    <div>
-      <Switch>
-        <Route exact path="/learning-space/card-deck/" component={CardDeckPage} />
-        <Route exact path="/learning-space/" component={LearningSpacePage} />
-        <Route exact path="/" component={HomePage} />
-        <Route path="/">
-          <Redirect component={HomePage} />
-        </Route>
-      </Switch>
-    </div>
-  );
-};
+const store = ConfigureStore();
+
+class Routes extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <BrowserRouter>
+        <div>
+          <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
+    );
+  };
+}
+
+if(module.hot){
+  module.hot.accept()
+}
+
+export default Routes;
+ 

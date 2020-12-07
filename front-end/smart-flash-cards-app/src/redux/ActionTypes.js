@@ -1,0 +1,15 @@
+export const CREATE_USER = 'CREATE_USER';
+export const USER_LOADING= 'CREATE_USER_LOADING';
+export const USER_FAILED = 'CREATE_USER_FAILED';
+
+export const CREATE_DECK = 'CREATE_DECK';
+export const DECK_LOADING= 'CREATE_DECK_LOADING';
+export const DECK_FAILED = 'CREATE_DECK_FAILED';
+export const GET_DECKS = 'GET_DECKS';
+export const UPDATE_CURRENT_DECK = "UPDATE_CURRENT_DECK";
+
+export const CREATE_CARD = 'CREATE_CARD';
+export const CARD_LOADING= 'CARD_LOADING';
+export const CARD_FAILED = 'CARD_FAILED';
+export const GET_CARDS = 'GET_CARDS';
+export const UPDATE_CURRENT_CARD = "UPDATE_CURRENT_CARD";
