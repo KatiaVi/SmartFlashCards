@@ -1,6 +1,5 @@
 package com.smartflashcards.controllers;
 
-
 import com.smartflashcards.helpers.TranslationClient;
 import com.smartflashcards.objects.Translation;
 
@@ -29,7 +28,7 @@ public class TranslationController {
             translation = new Translation(translated);
             return translation;
         } catch (Exception e) {
-            System.out.println("Couldn't retrieve user. Due to " + e);
+            System.out.println("Couldn't retrieve translation. Due to " + e);
             return null;
         }
     }

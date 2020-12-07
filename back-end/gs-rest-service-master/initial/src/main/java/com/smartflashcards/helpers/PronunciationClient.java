@@ -11,13 +11,6 @@ import com.google.protobuf.ByteString;
 import java.io.FileOutputStream;
 import java.io.File;
 import java.io.OutputStream;
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.SdkClientException;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 
 import org.springframework.stereotype.Component;
 
@@ -34,7 +27,7 @@ public class PronunciationClient {
         }
     }
 
-    public String createPronunciation(String source, String translation, String languageCode) throws Exception {
+    public String createPronunciation(Integer id, String translation, String languageCode) throws Exception {
             // Set the text input to be synthesized
             SynthesisInput input = SynthesisInput.newBuilder().setText(translation).build();
 
@@ -57,35 +50,25 @@ public class PronunciationClient {
             ByteString audioContents = response.getAudioContent();
 
             // Write the response to the output file.
-            String outputFileName = source + "-" + languageCode + ".mp3";
+            String outputFileName = Integer.toString(id) + ".mp3";
             try (OutputStream out = new FileOutputStream(outputFileName)) {
                 out.write(audioContents.toByteArray());
-                System.out.println("Audio content written to file " + outputFileName);
                 saveAudioFileToS3Bucket(outputFileName);
+                File savedFile = new File(outputFileName);
+                savedFile.delete();
             }
             return outputFileName;
-    }
-
-    public void downloadPronunciationFile(String source, String languageCode) {
-        String fileName = source + "-" + languageCode + ".mp3";
-        loadAudioFileFromS3Bucket(fileName);
     }
 
     public void saveAudioFileToS3Bucket(String outputFileName){
         try {
             String uploadItemCommand = "aws s3 cp " + outputFileName + " s3://pronunciations-smart-flash-cards/";
-            Runtime.getRuntime().exec(uploadItemCommand);
+            Process process = Runtime.getRuntime().exec(uploadItemCommand);
+            int exitCode = process.waitFor();
+            System.out.println("\nExited with error code : " + exitCode);
+            System.out.println("Uploaded item");
         } catch (Exception e) {
             System.out.println("Couldn't upload pronunciation item to s3 bucket due to " + e);
         }
-    }
-
-    public void loadAudioFileFromS3Bucket(String fileName){
-        try {
-            String downloadItemCommand = "aws s3 cp s3://pronunciations-smart-flash-cards/"+fileName + " ./";
-            Runtime.getRuntime().exec(downloadItemCommand);
-        } catch (Exception e) {
-            System.out.println("Couldn't download pronunciation item to s3 bucket due to " + e);
-        } 
     }
 }

@@ -8,22 +8,15 @@ class CardsBoard extends React.Component {
   }
 
   playPronunciation(e, deckId, cardId) {
-    if(this.props.currentCard && cardId == this.props.currentCard.id){
-      alert("PLAY");
-      const audioEl = document.getElementsByClassName("audio-element"+cardId)[0];
-      audioEl.play();
-    }
-    else {
-      alert("GET" + deckId + cardId);
-      this.props.getCard(deckId, cardId);
-    }
-    
+    e.preventDefault();
+    const audioEl = document.getElementsByClassName("audio-element"+cardId)[0];
+    audioEl.play();
   }
 
   render(){
     if (this.props.cards){
     const allCards = this.props.cards.map(card => {
-      const pronunciation = require('../../audio/playback.mp3');
+      const pronunciation = "https://pronunciations-smart-flash-cards.s3.us-east-2.amazonaws.com/"+card.id+".mp3";
       return(<div>
         <br/>
       <Card>
@@ -33,8 +26,12 @@ class CardsBoard extends React.Component {
           <audio className={"audio-element"+card.id}>
             <source src={pronunciation}></source>
           </audio>
-          <Button color="primary" type="submit" onClick={(e) => this.playPronunciation(e, card.deckId, card.id)}>Play Pronunciation</Button>
-          <p>Edit this card.</p>
+          <Button color="primary" type="submit" onClick={(e) => this.playPronunciation(e, card.deckId, card.id)}>Play Pronunciation</Button><br/><br/>
+          <Button className="home-page-button" onClick={(e) => this.props.triggerEditCardPopup(e, card)}>Edit this Card</Button>
+          <Button className="home-page-button" color="danger" onClick={(e) => {
+            this.props.deleteCard(card.deckId, card.id);
+            window.location.reload(true);
+          }}>Delete this Card</Button>
         </CardBody>
       </Card>
       </div>);

@@ -10,18 +10,21 @@ import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
 
 const store = ConfigureStore();
-
+const rootEl = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Routes />
     </Router>
   </Provider>,
-  document.getElementById('root')
+  rootEl
 );
 
 if(module.hot){
-  module.hot.accept()
+  module.hot.accept('./Routes', () => {
+    const NextApp = require('./Routes').default;
+    ReactDOM.render(<NextApp/>, rootEl);
+  })
 }
 
 // If you want your app to work offline and load faster, you can change

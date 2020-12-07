@@ -35,11 +35,11 @@ public class CardsDao extends Dao {
     }
 
     // Create new card in a deck
-    public Card createCard(Integer deckId, CardPayload payload, String pronunciationUrl) throws Exception {
+    public Card createCard(Integer deckId, CardPayload payload) throws Exception {
         PreparedStatement preparedStatement = connect.prepareStatement("insert into smart_flash_cards.card_info (source, translation, pronunciationUrl, deckId) values (?, ?, ?, ?)");
         preparedStatement.setString(1, payload.getSource());
         preparedStatement.setString(2, payload.getTranslation());
-        preparedStatement.setString(3, pronunciationUrl);
+        preparedStatement.setString(3, null);
         preparedStatement.setString(4, deckId.toString());
         Integer numRows = preparedStatement.executeUpdate();
         if (numRows == 1) {

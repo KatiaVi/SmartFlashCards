@@ -19,13 +19,13 @@ class CardDecksBoard extends React.Component {
 
   handleEditDeck(e, deckId) {
     e.preventDefault();
-    window.location.href = window.location.href + '/deck/' + deckId
+    window.location.href = (window.location.href).replace("?", '') + '/deck/' + deckId;
   }
 
   render(){
     const allDecksArr = this.props.decks || [];
     const allDecks = allDecksArr.map(deck => {
-      const languageName = LANGUAGES.filter(obj => obj.languageCode == deck.language )[0].language;
+      const languageName = LANGUAGES.filter(obj => obj.languageCode === deck.language )[0].language;
       return(
         <div>
         <br/>
@@ -33,8 +33,13 @@ class CardDecksBoard extends React.Component {
             <CardHeader>{deck.title}</CardHeader>
             <CardBody>
               <p>Language: {languageName}</p>
-              <Button className="home-page-button" color="primary" onClick={this.showPopup}>Practice Deck</Button>
-              <Button className="home-page-button" color="success" onClick={e => this.handleEditDeck(e, deck.id)}>Add/Edit Cards</Button>
+              <Button className="home-page-button" color="primary" onClick={e => this.props.triggerPracticeDeck(e,deck)}>Practice Deck</Button>
+              <Button className="home-page-button" color="success" onClick={e => this.handleEditDeck(e, deck.id)}>View Your Cards</Button><br/><br/>
+              <Button className="home-page-button" color="primary" onClick={e => this.props.triggerEditDeck(e, deck)}>Edit Deck Info</Button>
+              <Button className="home-page-button" color="danger" onClick={e => {
+                this.props.deleteDeck(deck.userId, deck.id)
+                window.location.reload(true)
+              }}>Delete Deck</Button>
             </CardBody>
           </Card>
       </div>

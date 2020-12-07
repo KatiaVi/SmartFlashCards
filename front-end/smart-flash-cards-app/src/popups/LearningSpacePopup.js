@@ -1,11 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Card, CardHeader, CardBody, Button } from 'reactstrap';
+import { Card, CardHeader, CardBody, Button } from 'reactstrap';
 import Form from 'react-bootstrap/Form'
-import LANGUAGES from '../helpers/Languages';
-import './popups.css';
 import { withRouter } from "react-router-dom";
-import { Link, useLocation, Redirect } from "react-router-dom";
-import LearningSpacePage from '../pages/LearningSpacePage';
 
 
 class LearningSpacePopup extends React.Component {

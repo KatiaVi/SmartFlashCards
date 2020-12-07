@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
-import DeckPopup from "../popups/DeckPopup";
 import LearningSpacePopup from "../popups/LearningSpacePopup";
 
 

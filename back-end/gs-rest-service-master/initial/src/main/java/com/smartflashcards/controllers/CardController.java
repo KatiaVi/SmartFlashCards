@@ -54,9 +54,9 @@ public class CardController {
 	public Card createNewCard(@PathVariable(name="id") Integer deckId, @RequestBody CardPayload payload) {
         Card card;
         try{
+            card = cardsDao.createCard(deckId, payload);
             // Todo: Retrieve the pronunciation using Google APIs
-            String pronunciationUrl = pronunciationClient.createPronunciation(payload.getSource(), payload.getTranslation(), payload.getLanguage());
-            card = cardsDao.createCard(deckId, payload, pronunciationUrl);
+            pronunciationClient.createPronunciation(card.getId(), payload.getTranslation(), payload.getLanguage());
             return card;
         } catch (Exception e) {
             System.out.println("Couldn't create card. Due to " + e);
@@ -72,7 +72,7 @@ public class CardController {
             String pronunciationUrl = oldCard.getPronunciationUrl();
             if (oldCard.getTranslation() != payload.getTranslation()){
                 // Todo: Retrieve the pronunciation of new translation using Google APIs
-                pronunciationUrl = pronunciationClient.createPronunciation(payload.getSource(), payload.getTranslation(), payload.getLanguage());
+                pronunciationUrl = pronunciationClient.createPronunciation(oldCard.getId(), payload.getTranslation(), payload.getLanguage());
             }
             card = cardsDao.updateCard(deckId, cardId, payload, pronunciationUrl);
             return card;

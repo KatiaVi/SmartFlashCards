@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CardsBoard from './card-deck/CardsBoardComponent';
 import { Container, Row, Col, Button } from 'reactstrap';
 import NewCardPopup from "../popups/NewCardPopup";
@@ -7,10 +7,12 @@ class CardDeckPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            popupOpen: false,
+            popupOpen: this.props.currentCard ? true: false,
+            inEditMode: this.props.editMode
         }
         this.showPopup = this.showPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
+        this.showPopupWithEditState = this.showPopupWithEditState.bind(this);
     }
 
     showPopup(){
@@ -23,6 +25,17 @@ class CardDeckPage extends React.Component {
         this.setState({
             popupOpen: false
         }) 
+    }
+
+    showPopupWithEditState(e, card){
+        e.preventDefault();
+        console.log(card);
+        this.setState({
+            inEditMode: true,
+        }, () => {
+            console.log("in showpoup handler: ", card);
+            return this.props.setCurrentCard(card, true)
+        });
     }
 
     componentDidMount() {
@@ -38,23 +51,28 @@ class CardDeckPage extends React.Component {
       const cardsBoard = (<Row>
         <Col xs="12">
             <CardsBoard 
-            cards={this.props.cards} 
-            deck={this.props.deck}
-            currentCard={this.props.currentCard}
-            getCard={this.props.getCard}
+                cards={this.props.cards} 
+                deck={this.props.deck}
+                currentCard={this.props.currentCard}
+                triggerEditCardPopup={this.showPopupWithEditState}
+                deleteCard={this.props.deleteCard}
             />
         </Col>
       </Row>);
 
-        if (this.state.popupOpen && this.props.deck){
+        if ((this.state.popupOpen && this.props.deck) || (this.state.inEditMode && this.props.currentCard)){
             return(
                 <NewCardPopup 
                     deckId={this.props.deck.id}
+                    currentCard={this.props.currentCard}
                     deckLanguage={this.props.deck.language}
                     postCard={this.props.postCard}
+                    updateCard={this.props.updateCard}
+                    getTranslation={this.props.getTranslation}
+                    inEditMode={this.state.inEditMode}
                 />
             );
-        }
+        } 
         else {
             return (
                 <Container className="content">

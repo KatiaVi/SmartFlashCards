@@ -6,7 +6,7 @@ public class User {
 
     public User() {
         this.id = null;
-        this.username = null;
+		this.username = null;
     }
     
     public User(Integer id, String username) {

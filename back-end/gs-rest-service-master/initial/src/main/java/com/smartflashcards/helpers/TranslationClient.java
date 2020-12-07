@@ -27,15 +27,12 @@ public class TranslationClient {
     // Retrieve Translation from Microsoft Translate client
     public String Post(String source, String language) throws IOException {
         String url = endpoint + "translate?api-version=3.0&to=" + language;
-        System.out.println(url);
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType,
                 "[{\n\t\"Text\": \"" + source + "\"\n}]");
-        System.out.println("[{\n\t\"Text\": \"" + source + "\"\n}]");
         Request request = new Request.Builder()
                 .url(url).post(body)
                 .addHeader("Ocp-Apim-Subscription-Key", subscriptionKey)
-                .addHeader("Ocp-Apim-Subscription-Region", "eastus")
                 .addHeader("Content-type", "application/json").build();
         Response response = client.newCall(request).execute();
         String responseStr = response.body().string();

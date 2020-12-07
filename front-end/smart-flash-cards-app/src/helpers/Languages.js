@@ -1,7 +1,7 @@
 const LANGUAGES = [
     { language: "Arabic", languageCode: "ar"},
     { language: "Bangla", languageCode: "bn"},
-    { language: "Chinese Mandarin", languageCode: "zh-Hans"},
+    // { language: "Chinese Mandarin", languageCode: "zh-Hans"},
     { language: "Czech", languageCode: "cs"},
     { language: "Danish", languageCode: "da"},
     { language: "Dutch", languageCode: "nl"},
@@ -22,7 +22,7 @@ const LANGUAGES = [
     { language: "Malayalam", languageCode: "ml"},
     { language: "Norwegian", languageCode: "nb"},
     { language: "Polish", languageCode: "pl"},
-    { language: "Portuguese (Portugal)", languageCode: "pl"},
+    // { language: "Portuguese (Portugal)", languageCode: "pl"},
     { language: "Russian", languageCode: "ru"},
     { language: "Slovak", languageCode: "sk"},
     { language: "Spanish", languageCode: "es"},
