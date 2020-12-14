@@ -3,7 +3,7 @@
 Smart FlashCards is a web application that lets you quickly create and practice virtual flashcards for language learning. It does so by automatically generating translations and pronunciation audio for the words/phrases the user wants to learn. Currently, Smart FlashCards supports over 10 languages (including Hindi, German, Japanese, Korean, Russian, Spanish and others).
 
 ## Motivation
-Quarantine resulted in me trying a lot of new things, including trying to learn Korean. While learning, I created regular flashcards to practice new vocab. One thing that I wished I could do was also hear the correct pronunciation of the words when practicing, since Korean uses a different alphabet from English and has sounds that I wasn't yet used to. Queue Smart Flashcards!
+Quarantine resulted in me trying a lot of new things, including trying to learn Korean. To practice Korean vocab, I used regular flashcards. One thing that I wished I could do was also hear the correct pronunciation of the words when practicing, since Korean uses a different alphabet from English and has sounds that I wasn't yet used to. Cue Smart Flashcards!
 
 ## Who would use this?
 Interested language learners who want to learn the basic vocabulary of a new language. This is especially targetted for learners who:
