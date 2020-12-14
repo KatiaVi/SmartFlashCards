@@ -14,8 +14,8 @@ Ex: Someone who is going on vacation to Germany and would like to learn some bas
 
 ## Walkthrough (German Vacationer Example, let's name her Anne)
 1. Anne visits the homepage and fills out some info to get her unique learning space link.
-![alt text](http://url/to/img.png)
-![alt text](http://url/to/img.png)
+![Main](https://github.com/KatiaVi/SmartFlashCards/blob/master/MainPage.png)
+![Onboard](https://github.com/KatiaVi/SmartFlashCards/blob/master/UserOnboard.png)
 
 2. After receiving an email with the link, Anne uses the link to get to Anne's learning space. There she gets started by creating a deck for some basic German words/phases.
 Video with walkthrough for steps 3-7: 
