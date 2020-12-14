@@ -18,14 +18,16 @@ Ex: Someone who is going on vacation to Germany and would like to learn some bas
 ![Onboard](https://github.com/KatiaVi/SmartFlashCards/blob/master/UserOnboard.png)
 
 2. After receiving an email with the link, Anne uses the link to get to Anne's learning space. There she gets started by creating a deck for some basic German words/phases.
-Video with walkthrough for steps 3-7: 
+
+Video with walkthrough for steps 3-7: https://youtu.be/W6AXKTgKVl8
+
 3. Clicking to view the cards in her new deck, Anne is redirected to the Deck page where she can add some German cards.
 4. Anne creates her first card for the phrase `Good Morning`. All she needs to do is enter the phrase she wants to learn in English, click `Auto-Translate` and `Create Card`. Now Anne has a card that shows her how `Good Morning` looks and sounds in German.
 5. Anne enters a few more German words/phrases she wants to learn before her trip.
 6. Anne goes back to her deck page and clicks `Practice Deck`.
 7. Now Anne can review her words/phrases.
 
-8. Anne flies to Germany and impresses people with her knack for the German language. Be like Anne ;)
+8. Anne flies to Germany with her German knowlege.
 
 ## Tech Stack
 Data Storage: 
@@ -38,4 +40,11 @@ External APIs:
 - SendGrid's Email API was used to send the unique learning space link automatically to an onboarding user: https://sendgrid.com/docs/for-developers/sending-email/api-getting-started/
 
 The backend logic was written in Java, using the Spring Framework. The front-end is written in React.
+
+## Potential Improvements/Next Steps
+- Translations aren't always right.
+- Have a way of marking which cards are learned.
+- Have a way to practice pronunciation of the word with flash cards. Perhaps, highlight the phrase as it's being read by the audio.
+- More aesthetic UI.
+- Package and host the code on the cloud.
 
