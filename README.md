@@ -3,14 +3,14 @@
 Smart FlashCards is a web application that lets you quickly create and practice virtual flashcards for language learning. It does so by automatically generating translations and pronunciation audio for the words/phrases the user wants to learn. Currently, Smart FlashCards supports over 10 languages (including Hindi, German, Japanese, Korean, Russian, Spanish and others).
 
 ## Motivation
-Quarantine resulted in me trying a lot of new things, including trying to learn Korean. To practice Korean vocab, I used regular flashcards. One thing that I wished I could do was also hear the correct pronunciation of the words when practicing, since Korean uses a different alphabet from English and has sounds that I wasn't yet used to. Cue Smart Flashcards!
+In addition to bread-making, dalgona coffee-making and other quarantine activities, I added learn Korean to my list. To practice Korean vocab, I used regular flashcards. One thing that I wished I could do was also hear the correct pronunciation of the words when practicing, since Korean uses a different alphabet from English and has sounds that I wasn't yet used to. Cue Smart Flashcards!
 
 ## Who would use this?
 Interested language learners who want to learn the basic vocabulary of a new language. This is especially targetted for learners who:
 1. Want to hear the words/phrases they are learning
-2. Want to get started quickly, without the added cost of googling a translation/update the language of their keyboard
+2. Want to get started quickly, without the added time cost of googling a translation/updating the language of their keyboard
 
-Ex: Someone who is going on vacation to Germany and would like to learn some basic words/phrases. Smart Flashcards will help them create a deck with all those phrases/words quickly. When practicing their deck, the vacationer will start to familiarize themselves with both how the word is written and spoken, helping really solidify what they're learning.
+Ex: Someone who is going on vacation to Germany and would like to learn some basic words/phrases. Smart FlashCards will help them create a deck with all those phrases/words quickly. When practicing their deck, the vacationer will start to familiarize themselves with both how the word is written and spoken, helping really solidify what they're learning.
 
 ## Walkthrough (German Vacationer Example, let's name her Anne)
 1. Anne visits the homepage and fills out some info to get her unique learning space link.
@@ -27,7 +27,7 @@ Video with walkthrough for steps 3-7: https://youtu.be/W6AXKTgKVl8
 6. Anne goes back to her deck page and clicks `Practice Deck`.
 7. Now Anne can review her words/phrases.
 
-8. Anne flies to Germany with her German knowlege.
+8. Anne flies to Germany and awes everyone with her knack for the German language!
 
 ## Tech Stack
 Data Storage: 
