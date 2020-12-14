@@ -1,6 +1,6 @@
 # SmartFlashCards
 
-Smart Flashcards lets you quickly create flashcards for language learning by automatically generating translations and audio for the words or phrases you want to learn.
+Smart FlashCards is a web application that lets you quickly create and practice virtual flashcards for language learning. It does so by automatically generating translations and pronunciation audio for the words/phrases the user wants to learn. Currently, Smart FlashCards supports over 10 languages (including Hindi, German, Japanese, Korean, Russian, Spanish and others).
 
 ## Motivation
 Quarantine resulted in me trying a lot of new things, including trying to learn Korean. While learning, I created regular flashcards to practice new vocab. One thing that I wished I could do was also hear the correct pronunciation of the words when practicing, since Korean uses a different alphabet from English and has sounds that I wasn't yet used to. Queue Smart Flashcards!
@@ -36,7 +36,7 @@ Data Storage:
 
 External APIs:
 - Microsoft Azure's Translator API was used to automatically generate the translations: https://azure.microsoft.com/en-us/services/cognitive-services/translator/
-- Google's Text-To-Apeech API was used to generate pronunciations of the translations: https://cloud.google.com/text-to-speech
+- Google's Text-To-Speech API was used to generate pronunciations of the translations: https://cloud.google.com/text-to-speech
 - SendGrid's Email API was used to send the unique learning space link automatically to an onboarding user: https://sendgrid.com/docs/for-developers/sending-email/api-getting-started/
 
 The backend logic was written in Java, using the Spring Framework. The front-end is written in React.
